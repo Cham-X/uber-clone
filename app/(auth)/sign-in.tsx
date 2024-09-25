@@ -3,10 +3,12 @@ import { icons, images } from "@/constants";
 import InputField from "@/components/InputField";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import OAuth from "@/components/OAuth";
 
 const SignIn = () => {
+
+    const router = useRouter()
 
     const [form,setForm] = useState({
         email: "",
@@ -14,7 +16,8 @@ const SignIn = () => {
     })
 
     const onSignInPress = () => { 
-        console.log("Form Data: ", form);
+        // console.log("Form Data: ", form);
+        router.replace("/(root)/(tabs)/home")
     }
 
 
@@ -58,7 +61,10 @@ const SignIn = () => {
                 {/* OAuth */}
                 <OAuth />
 
-                <Link href="/sign-up" className="text-lg text-center text-general-200 mt-10">
+                <Link
+                    href="/sign-up"
+                    // href="/(root)/(tabs)/profile.tsx"
+                    className="text-lg text-center text-general-200 mt-10">
                     <Text>Do not have an account?{" "}</Text>
                    <Text className="text-primary-500">SignUp</Text> 
                 </Link>
